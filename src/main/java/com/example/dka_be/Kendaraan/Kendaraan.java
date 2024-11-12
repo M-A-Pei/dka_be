@@ -1,7 +1,13 @@
 package com.example.dka_be.Kendaraan;
 
+import java.util.Random;
+
 import com.example.dka_be.Kendaraan.enums.BahanBakar;
 import com.example.dka_be.Kendaraan.enums.Warna;
+
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.Max;
 
 @Entity
 @Table(name = "kendaraan")
@@ -19,8 +25,10 @@ public class Kendaraan {
     @Column(name = "merk")
     private String merk;
 
-    @Column(name = "tahun", min = 1900, max = 2022)
-    private Int tahun;
+    @Column(name = "tahun")
+    @Min(1900)
+    @Max(2023)
+    private int tahun;
 
     @Column(name = "kapasitas")
     private int kapasitas;
@@ -37,18 +45,28 @@ public class Kendaraan {
     public void prePersist() {
         if (this.noRegistrasi == null){
             String prefix = "B";
-            String suffix = "XYZ";
-            Int random = new Random().nextInt(9000) + 1000;
+            String suffix = randomString(3);
+            int random = new Random().nextInt(9000) + 1000;
             this.noRegistrasi = prefix + "-" + random + "-" + suffix;
         }
     }
 
+    public String randomString(int length) {
+        String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < length; i++) {
+            int index = (int) (Math.random() * characters.length());
+            sb.append(characters.charAt(index));
+        }
+        return sb.toString();
+    }
+
     public String getNoRegistrasi() {
-        return noRegistrasi;
+        return this.noRegistrasi;
     }
 
     public String getNamaPemilik() {
-        return namaPemilik;
+        return this.namaPemilik;
     }
 
     public void setNamaPemilik(String namaPemilik) {
@@ -56,7 +74,7 @@ public class Kendaraan {
     }
 
     public String getAlamat() {
-        return alamat;
+        return this.alamat;
     }
 
     public void setAlamat(String alamat) {
@@ -64,7 +82,7 @@ public class Kendaraan {
     }
 
     public String getMerk() {
-        return merk;
+        return this.merk;
     }
 
     public void setMerk(String merk) {
@@ -72,7 +90,7 @@ public class Kendaraan {
     }
 
     public int getTahun() {
-        return tahun;
+        return this.tahun;
     }
 
     public void setTahun(int tahun) {
@@ -80,7 +98,7 @@ public class Kendaraan {
     }
 
     public int getKapasitas() {
-        return kapasitas;
+        return this.kapasitas;
     }
 
     public void setKapasitas(int kapasitas) {
@@ -88,7 +106,7 @@ public class Kendaraan {
     }
 
     public Warna getWarna() {
-        return warna;
+        return this.warna;
     }
 
     public void setWarna(Warna warna) {
@@ -96,7 +114,7 @@ public class Kendaraan {
     }   
 
     public BahanBakar getBahanBakar() {
-        return bahanBakar;
+        return this.bahanBakar;
     }
 
     public void setBahanBakar(BahanBakar bahanBakar) {

@@ -49,6 +49,26 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<!-- Jakarta Bean Validation API -->
+		<dependency>
+			<groupId>jakarta.validation</groupId>
+			<artifactId>jakarta.validation-api</artifactId>
+			<version>3.0.2</version> <!-- Use the latest version -->
+		</dependency>
+	
+		<!-- Hibernate Validator (Validation Implementation) -->
+		<dependency>
+			<groupId>org.hibernate.validator</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>6.2.0.Final</version> <!-- Try this version if 7.x doesn't work -->
+		</dependency>
+	
+		<!-- To make Bean Validation work, you may also need to include the following -->
+		<dependency>
+			<groupId>org.glassfish</groupId>
+			<artifactId>javax.el</artifactId>
+			<version>3.0.0</version> <!-- Required for expressions in validation -->
+		</dependency>
 	</dependencies>
 
 	<build>
