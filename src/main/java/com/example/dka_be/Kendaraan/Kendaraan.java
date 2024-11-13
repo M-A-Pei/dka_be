@@ -65,6 +65,10 @@ public class Kendaraan {
         return this.noRegistrasi;
     }
 
+    public void setNoRegistrasi(String noRegistrasi) {
+        this.noRegistrasi = noRegistrasi;
+    }
+
     public String getNamaPemilik() {
         return this.namaPemilik;
     }

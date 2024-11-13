@@ -23,5 +23,17 @@ public class KendaraanService {
     public List<Kendaraan> getBySearch(String noRegistrasi, String namaPemilik) {
         return kendaraanRepo.findByNoRegistrasiOrNamaPemilik(noRegistrasi, namaPemilik);
     }
+    public void deleteKendaraan(String noRegistrasi){
+        kendaraanRepo.deleteById(noRegistrasi);
+    }
+    public Kendaraan getByNoRegistrasi(String noRegistrasi){
+        return kendaraanRepo.findDistinctByNoRegistrasi(noRegistrasi);
+    }
+    public void updateKendaraan(Kendaraan kendaraan, String noRegistrasi){
+        kendaraan.setNoRegistrasi(noRegistrasi);
+        System.out.println("asduhnnnnnnnnnnnnnnnnnnnnnnnnkddddddddddddddddddddddkkdkdk");
+        System.out.println(kendaraan.getNoRegistrasi());
+        kendaraanRepo.save(kendaraan);
+    }
 
 }
