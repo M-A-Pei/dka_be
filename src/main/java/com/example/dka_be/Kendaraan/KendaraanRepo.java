@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 public interface KendaraanRepo extends JpaRepository<Kendaraan, String> {
-    @Query("SELECT * FROM `kendaraan` WHERE no_registrasi = ?1 OR nama_pemilik LIKE '%?2%'")
-    List<Kendaraan> findBySearch(String NoRegistrasi, String NamaPemilik);
+    @Query("SELECT k FROM Kendaraan k WHERE k.noRegistrasi = ?1 OR k.namaPemilik LIKE %?2%")
+    List<Kendaraan> findBySearch(String noRegistrasi, String namaPemilik);    
     Kendaraan findDistinctByNoRegistrasi(String NoRegistrasi);
 }
